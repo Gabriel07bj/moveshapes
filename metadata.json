@@ -1,0 +1,5 @@
+{
+  "name": "Interactive Math: Unlocking f(x, y) = 0",
+  "description": "An interactive web application for high school students to explore the principles of geometric transformations (translations and reflections) using the f(x, y) = 0 notation. The app includes interactive charts, practice problems, and AI-powered explanations.",
+  "requestFramePermissions": []
+}
