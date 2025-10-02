@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>모양 옮기기 원리 탐구: f(x, y) = 0의 비밀</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -46,9 +45,9 @@
   "imports": {
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "chart.js": "https://aistudiocdn.com/chart.js@^4.5.0",
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.21.0",
-    "chart.js": "https://aistudiocdn.com/chart.js@^4.5.0"
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.21.0"
   }
 }
 </script>
@@ -56,5 +55,6 @@
 <body class="text-gray-800">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
 </body>
 </html>

@@ -34,27 +34,23 @@ const AIPractice: React.FC = () => {
     const renderProblems = () => {
         if (!problems) return null;
     
-        const parts = problems.split('<정답>');
-        
-        return parts.map((part, index) => {
-            if (index === 0) {
-                 return <div key={index} className="prose max-w-none" dangerouslySetInnerHTML={{ __html: part.replace(/\n/g, '<br />') }} />;
-            }
-            
-            const problemMatch = part.match(/문제\s*\d+:.*/s);
-            const answer = problemMatch ? part.replace(problemMatch[0], '') : part;
-            const problem = problemMatch ? problemMatch[0] : '';
-            
+        // Split into individual problems using "문제 X:" as a delimiter
+        const problemBlocks = problems.split(/(?=문제 \d:)/).filter(p => p.trim());
+
+        return problemBlocks.map((block, index) => {
+            const [question, answer] = block.split('<정답>');
             return (
-                <div key={index}>
-                    <div className="prose max-w-none mt-4" dangerouslySetInnerHTML={{ __html: problem.replace(/\n/g, '<br />') }} />
-                    <details className="mt-4">
-                        <summary className="cursor-pointer font-semibold text-[#D68A57]">정답 보기</summary>
-                        <div className="prose max-w-none mt-2 p-4 bg-gray-50 rounded" dangerouslySetInnerHTML={{ __html: answer.trim().replace(/\n/g, '<br />') }}></div>
-                    </details>
+                <div key={index} className="mt-4 first:mt-0">
+                    <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: question.replace(/\n/g, '<br />') }} />
+                    {answer && (
+                        <details className="mt-4">
+                            <summary className="cursor-pointer font-semibold text-[#D68A57]">정답 보기</summary>
+                            <div className="prose max-w-none mt-2 p-4 bg-gray-50 rounded" dangerouslySetInnerHTML={{ __html: answer.trim().replace(/\n/g, '<br />') }}></div>
+                        </details>
+                    )}
                 </div>
             );
-        }).slice(0, parts.length - 1);
+        });
     };
 
     return (

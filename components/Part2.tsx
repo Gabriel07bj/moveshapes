@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Chart, ChartConfiguration, Point } from 'chart.js';
 import { normalizeAnswer, formatApiResult } from '../utils/formatter';
@@ -165,7 +166,7 @@ const Part2: React.FC<Part2Props> = ({ onInputFocus }) => {
     // State for Reflection
     const [reflectionType, setReflectionType] = useState('x-axis');
     const reflectionShape = [{ x: 1, y: 2 }, { x: 4, y: 4 }, { x: 3, y: 1 }];
-    let reflectedShape: Point[] = [];
+    let reflectedShape: Point[];
     let reflectionInfo = '';
 
     switch (reflectionType) {
