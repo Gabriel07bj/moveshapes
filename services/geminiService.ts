@@ -1,23 +1,17 @@
-
 import { GoogleGenAI } from "@google/genai";
 
-const API_KEY = process.env.API_KEY;
-
-if (!API_KEY) {
-  console.error("Gemini API key not found. Please set the API_KEY environment variable.");
-}
-
-const ai = new GoogleGenAI({ apiKey: API_KEY! });
+// Fix: The method for accessing the API key was non-compliant with @google/genai guidelines and caused a TypeScript error.
+// It has been updated to use `process.env.API_KEY` as required.
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
 
 export const callGeminiAPI = async (prompt: string, systemInstruction: string, maxRetries = 3): Promise<string> => {
-    if (!API_KEY) {
+    if (!process.env.API_KEY) {
         return "오류: Gemini API 키가 설정되지 않았습니다. 관리자에게 문의하세요.";
     }
 
     let delay = 1000;
     for (let i = 0; i < maxRetries; i++) {
         try {
-            // FIX: The `systemInstruction` property should be inside a `config` object, and the `contents` should be a simple string.
             const response = await ai.models.generateContent({
                 model: 'gemini-2.5-flash',
                 contents: prompt,
